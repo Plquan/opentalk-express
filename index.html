@@ -83,14 +83,38 @@
         }
 
         .code-block {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 20px;
-            border-radius: 10px;
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 12px;
             margin: 20px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 1em;
+            line-height: 1.6;
             overflow-x: auto;
             border-left: 4px solid #ffd700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            color: #d4d4d4;
+        }
+        
+        .code-block .keyword {
+            color: #569cd6;
+        }
+        
+        .code-block .string {
+            color: #ce9178;
+        }
+        
+        .code-block .function {
+            color: #dcdcaa;
+        }
+        
+        .code-block .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+        
+        .code-block .number {
+            color: #b5cea8;
         }
 
         .highlight {
