@@ -283,22 +283,18 @@ app.listen(PORT, () => {
                 <h2>Routing - Định tuyến</h2>
                 <p>Routing xác định cách ứng dụng phản hồi với các yêu cầu từ client</p>
                 <div class="code-block">
-// GET request
 app.get('/users', (req, res) => {
     res.json({ message: 'Lấy danh sách users' });
 });
 
-// POST request
 app.post('/users', (req, res) => {
     res.json({ message: 'Tạo user mới' });
 });
 
-// PUT request
 app.put('/users/:id', (req, res) => {
     res.json({ message: `Cập nhật user ${req.params.id}` });
 });
 
-// DELETE request
 app.delete('/users/:id', (req, res) => {
     res.json({ message: `Xóa user ${req.params.id}` });
 });
@@ -312,19 +308,15 @@ app.delete('/users/:id', (req, res) => {
                 <h2>Middleware</h2>
                 <p>Các hàm có quyền truy cập vào <span class="highlight">request</span>, <span class="highlight">response</span> và hàm <span class="highlight">next()</span></p>
                 <div class="code-block">
-// Middleware log thời gian
 app.use((req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
     next();
 });
 
-// Middleware xử lý JSON
 app.use(express.json());
 
-// Middleware xử lý URL encoded
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware static files
 app.use(express.static('public'));
                 </div>
             </div>
@@ -356,14 +348,12 @@ app.use(express.static('public'));
             <div class="slide-content">
                 <h2>Xử lý lỗi (Error Handling)</h2>
                 <div class="code-block">
-// Route không tồn tại
 app.use((req, res, next) => {
     res.status(404).json({ 
         error: 'Route không tồn tại' 
     });
 });
 
-// Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ 
