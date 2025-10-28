@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu Express.js</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .slides-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            color: white;
+        }
+
+        .slide-content {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin: 25px 0 15px 0;
+            color: #ffd700;
+        }
+
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li:before {
+            content: "▸ ";
+            color: #ffd700;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            overflow-x: auto;
+            border-left: 4px solid #ffd700;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2em;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 5em;
+            margin-bottom: 30px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-number">
+        <span id="current-slide">1</span> / <span id="total-slides">10</span>
+    </div>
+
+    <div class="slides-container" id="slidesContainer">
+        <!-- Slide 1: Giới thiệu -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="logo">⚡</div>
+                <h1>Express.js</h1>
+                <p style="font-size: 1.5em; text-align: center;">Framework Web nhanh, linh hoạt và tối giản cho Node.js</p>
+                <p style="text-align: center; margin-top: 30px; font-size: 1.2em;">Fast, unopinionated, minimalist web framework</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Express.js là gì? -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Express.js là gì?</h2>
+                <ul>
+                    <li><span class="highlight">Framework web</span> phổ biến nhất cho Node.js</li>
+                    <li>Được xây dựng trên nền tảng <span class="highlight">Node.js</span></li>
+                    <li>Cung cấp các tính năng mạnh mẽ để phát triển <span class="highlight">web và mobile apps</span></li>
+                    <li>Tối giản, không áp đặt cấu trúc cứng nhắc</li>
+                    <li>Hỗ trợ xây dựng <span class="highlight">RESTful APIs</span></li>
+                    <li>Có cộng đồng lớn và nhiều middleware</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Tại sao chọn Express.js? -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Tại sao chọn Express.js?</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h3>🚀 Nhanh & Hiệu quả</h3>
+                        <p>Hiệu suất cao với overhead tối thiểu</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>📦 Dễ học</h3>
+                        <p>Cú pháp đơn giản, dễ tiếp cận</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>🔌 Middleware</h3>
+                        <p>Hệ thống middleware linh hoạt</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>🌐 Cộng đồng</h3>
+                        <p>Cộng đồng lớn, nhiều tài nguyên</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Cài đặt -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Cài đặt Express.js</h2>
+                <h3>Bước 1: Khởi tạo project</h3>
+                <div class="code-block">npm init -y</div>
+                
+                <h3>Bước 2: Cài đặt Express</h3>
+                <div class="code-block">npm install express</div>
+                
+                <h3>Bước 3: Tạo file server cơ bản</h3>
+                <p>Tạo file <span class="highlight">app.js</span> hoặc <span class="highlight">index.js</span></p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Hello World -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Ví dụ Hello World</h2>
+                <div class="code-block">
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+app.listen(PORT, () => {
+    console.log(`Server đang chạy tại http://localhost:${PORT}`);
+});
+                </div>
+                <p>Chạy: <span class="highlight">node app.js</span></p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Routing -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Routing - Định tuyến</h2>
+                <p>Routing xác định cách ứng dụng phản hồi với các yêu cầu từ client</p>
+                <div class="code-block">
+// GET request
+app.get('/users', (req, res) => {
+    res.json({ message: 'Lấy danh sách users' });
+});
+
+// POST request
+app.post('/users', (req, res) => {
+    res.json({ message: 'Tạo user mới' });
+});
+
+// PUT request
+app.put('/users/:id', (req, res) => {
+    res.json({ message: `Cập nhật user ${req.params.id}` });
+});
+
+// DELETE request
+app.delete('/users/:id', (req, res) => {
+    res.json({ message: `Xóa user ${req.params.id}` });
+});
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Middleware -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Middleware</h2>
+                <p>Các hàm có quyền truy cập vào <span class="highlight">request</span>, <span class="highlight">response</span> và hàm <span class="highlight">next()</span></p>
+                <div class="code-block">
+// Middleware log thời gian
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
+
+// Middleware xử lý JSON
+app.use(express.json());
+
+// Middleware xử lý URL encoded
+app.use(express.urlencoded({ extended: true }));
+
+// Middleware static files
+app.use(express.static('public'));
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Request & Response -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Request & Response Objects</h2>
+                <h3>Request Object (req)</h3>
+                <ul>
+                    <li><span class="highlight">req.params</span> - Route parameters</li>
+                    <li><span class="highlight">req.query</span> - Query string parameters</li>
+                    <li><span class="highlight">req.body</span> - Request body data</li>
+                    <li><span class="highlight">req.headers</span> - Request headers</li>
+                </ul>
+                <h3>Response Object (res)</h3>
+                <ul>
+                    <li><span class="highlight">res.send()</span> - Gửi response</li>
+                    <li><span class="highlight">res.json()</span> - Gửi JSON response</li>
+                    <li><span class="highlight">res.status()</span> - Set status code</li>
+                    <li><span class="highlight">res.redirect()</span> - Chuyển hướng</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Error Handling -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Xử lý lỗi (Error Handling)</h2>
+                <div class="code-block">
+// Route không tồn tại
+app.use((req, res, next) => {
+    res.status(404).json({ 
+        error: 'Route không tồn tại' 
+    });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ 
+        error: 'Có lỗi xảy ra!',
+        message: err.message 
+    });
+});
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Tổng kết -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Tổng kết</h2>
+                <ul>
+                    <li>Express.js là framework <span class="highlight">nhanh, tối giản</span> cho Node.js</li>
+                    <li>Dễ học, dễ sử dụng với cú pháp đơn giản</li>
+                    <li>Hệ thống <span class="highlight">routing</span> mạnh mẽ</li>
+                    <li><span class="highlight">Middleware</span> linh hoạt và dễ mở rộng</li>
+                    <li>Phù hợp xây dựng <span class="highlight">RESTful APIs</span></li>
+                    <li>Cộng đồng lớn, nhiều package hỗ trợ</li>
+                </ul>
+                <p style="text-align: center; margin-top: 40px; font-size: 1.5em;">
+                    🎉 Bắt đầu xây dựng ứng dụng của bạn với Express.js! 🎉
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button id="prevBtn" onclick="changeSlide(-1)">◀ Trước</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Sau ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const slidesContainer = document.getElementById('slidesContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateSlide() {
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}vw)`;
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+            updateSlide();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        updateSlide();
+    </script>
+</body>
+</html>
