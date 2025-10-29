@@ -266,17 +266,15 @@
         <div class="slide">
             <div class="slide-content">
                 <h2>Ví dụ Hello World</h2>
-                <div class="code-block">
-                    const express = require('express');
-                    
-                    const app = express();
+                <pre class="code-block">
+const express = require('express');
 
-                    const PORT = 3000;
+const app = express();
 
-                    app.get('/', (req, res) => {
-                    res.send('Hello World!');
-                    });
-                </div>
+const PORT = 3000;
+
+app.get('/', (req, res) => {res.send('Hello World!')});
+        </pre>
                 <p>Chạy: <span class="highlight">node app.js</span></p>
             </div>
         </div>
@@ -286,23 +284,15 @@
             <div class="slide-content">
                 <h2>Routing - Định tuyến</h2>
                 <p>Routing xác định cách ứng dụng phản hồi với các yêu cầu từ client</p>
-                <div class="code-block">
-                    app.get('/users', (req, res) => {
-                    res.json({ message: 'Lấy danh sách users' });
-                    });
+                <pre class="code-block">
+app.get('/', (req, res) => { res.send('Hello World!') })
 
-                    app.post('/users', (req, res) => {
-                    res.json({ message: 'Tạo user mới' });
-                    });
+app.post('/', (req, res) => { res.send('Got a POST request') })
 
-                    app.put('/users/:id', (req, res) => {
-                    res.json({ message: `Cập nhật user ${req.params.id}` });
-                    });
+app.put('/user', (req, res) => { res.send('Got a PUT request at /user') })
 
-                    app.delete('/users/:id', (req, res) => {
-                    res.json({ message: `Xóa user ${req.params.id}` });
-                    });
-                </div>
+app.delete('/user', (req, res) => { res.send('Got a DELETE request at /user') })
+                </pre>
             </div>
         </div>
 
@@ -312,18 +302,18 @@
                 <h2>Middleware</h2>
                 <p>Các hàm có quyền truy cập vào <span class="highlight">request</span>, <span
                         class="highlight">response</span> và hàm <span class="highlight">next()</span></p>
-                <div class="code-block">
-                    app.use((req, res, next) => {
-                    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-                    next();
-                    });
+                <pre class="code-block">
+app.use((req, res, next) => {
+console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+next();
+});
 
-                    app.use(express.json());
+app.use(express.json());
 
-                    app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
-                    app.use(express.static('public'));
-                </div>
+app.use(express.static('public'));
+                </pre>
             </div>
         </div>
 
